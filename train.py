@@ -198,6 +198,7 @@ class OurTrainingArguments(TrainingArguments):
     @cached_property
     def _setup_devices(self) -> "torch.device":
         requires_backends(self, ["torch"])
+        self.distributed_state = None
         logger.info("PyTorch: setting up devices")
         if self.no_cuda:
             device = torch.device("cpu")
